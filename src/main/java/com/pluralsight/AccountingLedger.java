@@ -1,86 +1,37 @@
 package com.pluralsight;
 
-import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Scanner;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class AccountingLedger {
-    static Scanner scanner = new Scanner(System.in);
-    static final String fileName = "transactions.csv";
+//This is where the file save
 
-    public static void main(String[] args) {
-        while (true) {
-            System.out.println("\n=== Home Screen ===");
-            System.out.println("D) Add Deposit");
-            System.out.println("P) Make Payment (Debit)");
-            System.out.println("L) Ledger");
-            System.out.println("X Exit");
-            System.out.println("Choose an option:");
-            String choice = scanner.nextLine();
+    private static String fileName = "main/resource/trasaction.csv";
+    //This method saves a transaction to the CSV file
+// to save fileName path
 
-            if (choice.equals("D")) {
-                addAccountingLedger(true);
-            } else if (choice.equals("P")) ;
-            addAccountingLedger(false);
-        } else if (choice.equals("L")) {
-            showTransactions();
-        } else if (choice.equals("X")) {
-            System.out.println("Exit");
+    public static void saveTransactionsToCSV(Transaction transaction) {
+        try {
 
-            break;
-        } else {
-            System.out.println("Try again");
+            //this helps the writer to the file and true means we keep adding to it
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            //make one line of text with all the transaction info, separeted by split |
+
+            String csvLine = transaction.getDate() + " | " +
+                    transaction.getTime() + "|" +
+                    transaction.getDescription() + "|" +
+                    transaction.getVendor() + "|" +
+                    transaction.getAmount() + "|" ;
+
+                    writer.write(csvLine); //write the line to the file
+            writer.newLine(); //adds a new line after each entry
+            writer.close();  //close the writer when done
+
+        } catch (IOException e) { //if there is a problem writing the file
+            throw new RuntimeException(e); //show the error
 
         }
-    }
-
-}
-
-static void addTransactions(boolean isDeposit) {
-    try (FileWriter fw = new FileWriter(filename, true);
-         BufferedWriter bw = new BufferedWriter(fw)) {
-
-        LocalDate today = LocalDate.now();
-        LocalTime now = LocalTime.now();
-
-        System.out.print("What is it for?");
-        System.out.print("Who is the vendor");
-        String vendor = AccountingLedger.scanner.nextLine();
-        System.out.print("How much money?");
-        double amount = Double.parseDouble(AccountingLedger.scanner.nextLine());
-
-        if (!isDeposit) {
-            //if we spend money, it is negative
-
-            amount = -amount;
-        }
-        Object description;
-        String line = today + "|" + now.withNano(0) + "|" + description + "|" + vendor + "|" + amount;
-        bw.write(line);
-        bw.newLine();
-
-        System.out.println("Saved your transaction");
-    } catch (IOException e) {
-        System.out.println("Something wrong");
 
     }
-
-}
-
-static void showTransactions() {
-
-    try (BufferedReader br = new BufferedReader(new File))
-    System.out.println("\n=== your Transactions ===");
-    String line;
-    while ((line = br.readLine()) != null) {
-        Systme.out.print(line);
-
-    }
-}catch(IOException ){
-        System.out.
-
-println("You don't have transction yet");
-
 }
