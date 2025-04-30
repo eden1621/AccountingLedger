@@ -1,5 +1,5 @@
 package com.pluralsight;
-
+import java.util.*;
 
 public class Transaction {
     private String date;
@@ -56,5 +56,16 @@ public class Transaction {
         this.amount = amount;
     }
 }
+/*
+public class SimpleLedger {
+    static class Entry {
+        String date; // Format: YYYY-MM-DD
+        String vendor;
+        double amount;
 
-
+        public Entry(String date, String vendor, double amount) {
+            this.date = date;
+            this.vendor = vendor;
+            this.amount = amount;
+        }
+*/
