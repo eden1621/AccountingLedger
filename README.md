@@ -42,16 +42,19 @@ It uses custom classes, file handling, and menu-based console interaction.
 
 
 ### 🧾 Add Deposit or Payment:
-Displays how users enter transaction details.
+<img width="440" alt="image" src="https://github.com/user-attachments/assets/142a482f-e95a-4b78-8091-674fcc409c3b" />
 
 ### 📋 Ledger View:
-Displays all recorded transactions in a table format.
+<img width="383" alt="image" src="https://github.com/user-attachments/assets/05a7d023-2e48-4ac2-82e5-dea264898a73" />
+
 
 ### 📊 Reports Menu:
-Lets users filter results by date or vendor.
+<img width="395" alt="image" src="https://github.com/user-attachments/assets/140e3384-1de7-476d-805d-80a1c7d1e483" />
+
 
 ### 🗃️ CSV File Entry:
-Example of how transaction data is saved in trasaction.csv.
+<img width="401" alt="image" src="https://github.com/user-attachments/assets/2cac69d7-8c6c-40bf-9c69-d222ccd9284a" />
+
 
 🔍 Interesting Code
 
