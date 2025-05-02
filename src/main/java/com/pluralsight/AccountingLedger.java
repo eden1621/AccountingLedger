@@ -33,7 +33,7 @@ public class AccountingLedger {
         List<Transaction> transactions = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = reader.readLine()) != null) { // looping line by line,
+            while ((line = reader.readLine()) != null) { // looping line by line, until the file end
                 String[] parts = line.split("\\|"); // split the line and get transaction values
 
                 if (parts.length >= 5) {

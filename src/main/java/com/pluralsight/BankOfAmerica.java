@@ -9,14 +9,16 @@ import static com.pluralsight.AccountingLedger.readTransactionsFromCSV;
 import static com.pluralsight.AccountingLedger.saveTransactionsToCSV;
 
 public class BankOfAmerica {
+    //Used static Scanner to read input from the user
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         //get input
         // this keeps the program running
-        boolean running = true;
+
         //this loop keeps showing the menu until the user chooses to exit
+
         while (true) {
             System.out.println("\n==Home Screen");
             System.out.println("D) Add Deposit");
@@ -82,8 +84,8 @@ public class BankOfAmerica {
                     displayLedger();
                 case "X":
                     System.out.println("Goodbye!");
-                    running = false;  // Stop the loop
-                    break;
+
+                    return;
 
                 //error
                 default:
@@ -113,6 +115,8 @@ public class BankOfAmerica {
         //User choice to make a payment .//                //create a method
         // Check the user's choice and take the appropriate action
         // Check the user's choice and take the appropriate action
+
+
         switch (input) {
             case "A":
                 // Let the user know what's happening
@@ -146,7 +150,15 @@ public class BankOfAmerica {
                 break;
         }
     }
+    private static void displayAllLedger() {
+        //list of transaction objects that will read from files // all
+        List<Transaction> transactions = readTransactionsFromCSV();
+        displayLedgerHeader(); // display header
+        for (Transaction transaction : transactions) {
+            displaySingleLedger(transaction); //
+        }
 
+    }
     private static void displayPayment() {
         List<Transaction> transactions = readTransactionsFromCSV();
         displayLedgerHeader(); // display header
@@ -171,22 +183,13 @@ public class BankOfAmerica {
 
     }
 
-    private static void displayAllLedger() {
-        //list of transaction objects that will read from files // all
-         List<Transaction> transactions = readTransactionsFromCSV();
-         displayLedgerHeader(); // display header
-         for (Transaction transaction : transactions) {
-             displaySingleLedger(transaction); //
-         }
-
-    }
     public static void displayLedgerHeader() {
         System.out.printf("%-12s | %-20s | %-20s | %-15s | %10s\n",
                 "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("-------------------------------------------------------------------------------");
     }
 
-    // Display a single transaction in table format
+    // Display a single transaction in table format\\ show all the saved transactions
     public static void displaySingleLedger(Transaction transaction) {
         System.out.printf("%-12s | %-20s | %-20s | %-15s | %10.2f\n",
                 transaction.getDate(),
@@ -290,7 +293,8 @@ public class BankOfAmerica {
 
         displayLedgerHeader();
         for (Transaction t : transactions) {
-            if (t.getDate().startsWith(currentYear)) {
+            if (t.getDate().startsWith(currentYear)) { //2025
+                //t.getDate = 2025-05-01: 9:27
                 displaySingleLedger(t);
             }
         }
